@@ -46,8 +46,9 @@ public class Lesson1 {
   private void exercise1() {
     List<String> list = Arrays.asList(
         "alpha", "bravo", "charlie", "delta", "echo", "foxtrot");
-
-    /* YOUR CODE HERE */
+    final StringBuilder sb = new StringBuilder();
+    list.stream().map(s -> s.charAt(0)).forEachOrdered(sb::append);
+    System.out.println(sb.toString());
   }
 
   /**
@@ -58,8 +59,8 @@ public class Lesson1 {
   private void exercise2() {
     List<String> list = new ArrayList<>(Arrays.asList(
         "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
-
-    /* YOUR CODE HERE */
+    list.removeIf(s -> s.length() % 2 != 0);
+    list.forEach(System.out::println);
   }
 
   /**
@@ -70,8 +71,8 @@ public class Lesson1 {
   private void exercise3() {
     List<String> list = new ArrayList<>(Arrays.asList(
         "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
-
-    /* YOUR CODE HERE */
+    list.replaceAll(String::toUpperCase);
+    list.forEach(System.out::println);
   }
 
   /**
@@ -85,8 +86,13 @@ public class Lesson1 {
     map.put("c", 3);
     map.put("b", 2);
     map.put("a", 1);
+    final StringBuilder sb = new StringBuilder();
 
-    /* YOUR CODE HERE */
+    map.keySet().stream()
+            .map(s -> s + map.get(s))
+            .forEachOrdered(sb::append);
+
+    System.out.println(sb.toString());
   }
 
   /**
@@ -96,8 +102,7 @@ public class Lesson1 {
    */
   private void exercise5() {
     List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-
-    /* YOUR CODE HERE */
+    new Thread(() -> list.forEach(System.out::println)).start();
   }
 
   /**
